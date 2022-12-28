@@ -1,17 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <% if (todayHtml === 'Monday')  { %>
-        <h1 style="color: blue"> <%= todayHtml %> ToDo List </h1>
-    <% }else { %>
-        <h1 style="color: rgb(22, 22, 39)"> <%= todayHtml %> ToDo List </h1>
-        <% } %> 
+<%- include('header'); %> 
+
+    <div class="box">
+        <div id="heading">
+            <h1 class="title"><%= listName %> </h1>
+        </div>
+    </div>
     
-</body>
-</html>
+
+        
+
+    <div class="box">
+      <% for(let i =0; i< newListItemsHtml.length; i++) {%> 
+
+       
+        <div class="item" name="item">
+            <input type="checkbox" class="check">
+            <p> <%= newListItemsHtml[i] %> </p>
+        </div>       
+      <% } %>
+
+      <form action="/" method="POST" class="mg-bottom">
+        <input type="text" name="newItem" id="textInput" placeholder="new Item" autocomplete="off" >
+        <button type="submit" name="list" value= <%= listName %>>+</button>
+    </form>
+
+    </div>
+
+    <script>
+        const task = document.querySelector('.check');
+        task.addEventListener('click', (e) => {
+            console.log(e);
+        });
+    </script>
+
+<%- include('footer'); %> 
